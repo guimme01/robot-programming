@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot name="origins">
+
+    <material name="sky_blue">
+        <color rgba="0 0.3 1 1"/>
+    </material>
+
+    <material name="dark_blue">
+        <color rgba="0 0 0.4 1"/>
+    </material>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder length="0.6" radius="0.2"/>
+            </geometry>
+            <material name="dark_blue"/>
+        </visual>
+    </link>
+
+    <link name="lower_base">
+        <visual>
+            <geometry>
+                <box size="0.4 0.4 0.05"/>
+            </geometry>
+            <origin xyz="0 0 -0.3"/>
+        </visual>
+    </link>
+
+    <joint name="lower_base_to_main" type="fixed">
+        <parent link="base_link"/>
+        <child link="lower_base" />
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <link name="left_front_wheel">
+        <visual>
+            <origin rpy="1.57075 0 0" xyz="0 -0.185 -0.31"/>
+            <geometry>
+                <cylinder radius="0.07" length="0.035"/>
+            </geometry>
+            <!-- material name-->
+        </visual>
+    </link>
+
+    <joint name="left_front_wheel_to_lower_base" type="fixed">
+        <parent link="lower_base"/>
+        <child link="left_front_wheel"/>
+        <origin rpy="0 0 0" xyz="0.1333333333 0 -0.085" />
+    </joint>
+
+    <link name="left_back_wheel">
+        <visual>
+            <origin rpy="1.57075 0 0" xyz="0 -0.185 -0.31"/>
+            <geometry>
+                <cylinder radius="0.07" length="0.035"/>
+            </geometry>
+            <!-- material name-->
+        </visual>
+    </link>
+
+    <joint name="left_back_wheel_to_lower_base" type="fixed">
+        <parent link="lower_base"/>
+        <child link="left_back_wheel"/>
+        <origin rpy="0 0 0" xyz="-0.1333333333 0 -0.085" />
+    </joint>
+
+    <link name="right_front_wheel">
+        <visual>
+            <origin rpy="1.57075 0 0" xyz="0 0.185 -0.31"/>
+            <geometry>
+                <cylinder radius="0.07" length="0.035"/>
+            </geometry>
+            <!-- material name-->
+        </visual>
+    </link>
+
+    <joint name="right_front_wheel_to_lower_base" type="fixed">
+        <parent link="lower_base"/>
+        <child link="right_front_wheel"/>
+        <origin rpy="0 0 0" xyz="0.1333333333 0 -0.085" />
+    </joint>
+
+    <link name="right_back_wheel">
+        <visual>
+            <origin rpy="1.57075 0 0" xyz="0 0.185 -0.31"/>
+            <geometry>
+                <cylinder radius="0.07" length="0.035"/>
+            </geometry>
+            <!-- material name-->
+        </visual>
+    </link>
+
+    <joint name="right_back_wheel_to_lower_base" type="fixed">
+        <parent link="lower_base"/>
+        <child link="right_back_wheel"/>
+        <origin rpy="0 0 0" xyz="-0.1333333333 0 -0.085" />
+    </joint>
+
+</robot>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="model" />
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find rp_project)/urdf/robot.urdf" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rp_project)/config/robot.rviz" required="true"/>
+</launch>
