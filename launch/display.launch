@@ -3,9 +3,24 @@
 
     <arg name="model" />
 
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find rp_project)/urdf/robot.urdf" />
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name ="paused" value="false"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="gui" value="true"/>
+		<arg name="headless" value="false"/>
+		<arg name="debug" value="false"/>
+	</include>
+	
+	<param name="robot_description" command="$(find xacro)/xacro '$(find robot_model_pkg)/urdf/robot.xacro'"/>
+	
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model robot_model -param robot_description"/>
+	
+	<!--
+    	<param name="robot_description" command="$(find xacro)/xacro --inorder $(find rp_project)/urdf/robot.urdf" />
 
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rp_project)/config/robot.rviz" required="true"/>
+    	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rp_project)/config/robot.rviz" required="true"/> -->
 </launch>
